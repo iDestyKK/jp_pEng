@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>iOS7 Frosted Glass Effect - jsFiddle demo</title>
+	<link rel="stylesheet" type="text/css" href="../data/css/light.css">
+  
+	<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.js'></script>
+  
+	<link rel="stylesheet" type="text/css" href="/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/css/result-light.css">
+    <script type='text/javascript' src="https://rawgithub.com/abduzeedo/ios7-blur-html5/master/js/html2canvas.js"></script>
+    <script type='text/javascript' src="https://rawgithub.com/abduzeedo/ios7-blur-html5/master/js/StackBlur.js"></script>
+    
+  
+  <style type='text/css'>
+    *, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+header, .blurheader {
+    height: 137px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    border-bottom:1px solid rgba(0, 0, 0, .2);
+    z-index: 10000000000;
+}
+header {
+    text-align: left;
+    display: none;
+}
+header h1 {
+    font-size: 24px;
+    font-family:"HelveticaNeue-Light", sans-serif;
+    font-weight: lighter;
+    line-height: 88px;
+    margin: 0;
+    padding: 0;
+}
+.blurheader {
+    background: transparent;
+    overflow: hidden;
+    z-index: 10000;
+    background: #fff;
+    left: 0;
+}
+section {
+    height: 100%;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+article {
+    width: 100%;
+    padding: 22px;
+    margin: 75px 0 0 0;
+    z-index: 100;
+    font-size: 16px;
+    line-height: 150%;
+}
+#canvas {
+    opacity:1;
+    z-index: 100;
+    position: absolute;
+    display: block;
+    top: 3px;
+}
+article h1 {
+    font-size: 32px;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    padding: 0;
+    line-height: 32px;
+}
+article h3 {
+    line-height: 24px;
+    font-size: 24px;
+    margin: 0 0 15px 0;
+    padding: 0;
+    font-family:"HelveticaNeue-Light", sans-serif;
+    font-weight: normal;
+}
+article p {
+    margin: 0 0 15px 0;
+}
+article img {
+    width: 100%;
+    margin: 0 0 15px 0;
+}
+footer {
+    margin: 22px -22px -22px -22px;
+    padding: 22px;
+    background: #111;
+    color: #ccc;
+}
+footer a {
+    color: #ccc;
+    text-decoration: none;
+    border-bottom: 1px dotted #fff;
+}
+  </style>
+  
+
+
+<script type='text/javascript'>//<![CDATA[ 
+
+$(function () {
+    html2canvas($("body"), {
+        onrendered: function (canvas) {
+            $(".blurheader").append(canvas);
+            $("canvas").attr("id", "canvas");
+            stackBlurCanvasRGB(
+                'canvas',
+            0,
+            0,
+            $("canvas").width(),
+            $("canvas").height(),
+            20);
+        }
+    });
+    vv = setTimeout(function () {
+        $("header").show();
+        clearTimeout(vv);
+    }, 200);
+});
+
+$(window).scroll(function () {
+    $("canvas").css(
+        "-webkit-transform",
+        "translatey(-" + $(window).scrollTop() + "px)");
+});
+
+window.onresize = function () {
+    $("canvas").width($(window).width());
+};
+
+$(document).bind('touchmove', function () {
+    $("canvas").css(
+        "-webkit-transform",
+        "translatey(-" + $(window).scrollTop() + "px)");
+});
+
+$(document).bind('touchend', function () {
+    $("canvas").css(
+        "-webkit-transform",
+        "translatey(-" + $(window).scrollTop() + "px)");
+});
+//]]>  
+
+</script>
+
+<script>
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+			vars[key] = value;
+		});
+		return vars;
+	}
+</script>
+
+
+</head>
+
+<script language="JavaScript">
+	var lesson = getUrlVars()["lesson"];
+	var mode = getUrlVars()["mode"];
+	</script>
+	<script src="..\data\js\main_functions.js" type="text/javascript"></script>
+	<script src="js\main.js" type="text/javascript"></script>
+	<script language="JavaScript">
+	document.write('<script src="' + module_path[lesson - 1] + '" type="text/javascript">');
+</script></script>
+
+<body>
+  <section>
+    <header>
+		<div style = "position: fixed; z-index: 10; width: 100%; left: 0; top: 0;">
+			<table class="top_bar" style = "background: rgba(0, 0, 0, 0); margin: 0;">
+				<tr>
+					<td valign = "middle">
+						<a href="index.html" ><img class="back_button" src="../data/images/transparent_arrow_placement.png"/></a>
+					</td>
+					<td width = "4px">
+					</td>
+					<td valign = "bottom">
+						<font size = "7px">
+							<span style="vertical-align:bottom;">
+									<script language = "Javascript">document.write("Vocabulary Chart - " + modules[lesson - 1]);</script>
+							</span>
+						</font>
+					</td>
+				</tr>
+				<tr height = "32px">
+					<td valign = "middle" width = "64px">
+						
+					</td>
+					<td width = "4px">
+					</td>
+					<td valign = "bottom">
+						<span style="vertical-align:bottom;">This only consists of the Kanji you learned so far. Study them if you have to.</span>
+					</td>
+				</tr>
+			</table>
+			<img src = "../data/images/laser_shadow.png" style = "position: fixed; z-index: 100; width: 100%; left: 0; top: 137;" width = "100%" height = "14px"/>
+		<div/>
+	</header>
+	
+    <div class="blurheader"></div>
+	
+	<div style = "padding-top: 168px">
+		<center>
+		<table width = 580px>
+		<tr><td width = 40px><b><center>Kanji</center></b></td><td><b><center>Kana (Romaji)</center></b></td><td><b><center>English</center></b></td></tr>
+		<script language="JavaScript">
+		for (var i = 0; i < kanji.length; i += 1)
+		{
+			document.write("<tr><td height = 39px><center><font size='6'>" + kanji[i] + "</font></center></td><td><center>" + kanji_kana[i] + " (" + kanji_romaji[i] + ")</center></td><td><center>" + kanji_meaning[i] + "</center></td></tr>");
+		}
+		</script>
+		</table>
+		<br/><br/>
+
+		<script language="JavaScript">
+		document.write("<a href = 'practice.html?lesson=" + lesson + "'>Practice</a>");
+		</script>
+
+		</center>
+	</div>
+</section>
+  
+</body>
+
+
+</html>

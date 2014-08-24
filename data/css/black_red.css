@@ -1,0 +1,28 @@
+html {
+background: #000000 url(../../data/images/back.png) no-repeat scroll top left;
+background-position: top center;
+background-attachment: fixed;
+background-color: #000000;
+color : #FFFFFF;
+margin : 0;
+padding : 0;
+height : 100%;
+margin : 0;
+padding : 0;
+}
+table {
+background-color: rgba(0,0,0,0.25);
+border: solid #777 1px;
+}
+.vx_text {
+border: 1px solid #777;
+background: #000000;
+color: #ffffff;
+text-align: center;
+font-size: 1.1em;
+font-family: exo;
+}
+a:link {color:#BEBEBE;}      /* unvisited link */
+a:visited {color:#5F5F5F;}  /* visited link */
+a:hover {color:#BEBEBE;}  /* mouse over link */
+a:active {color:#5F5F5F;}  /* selected link */
