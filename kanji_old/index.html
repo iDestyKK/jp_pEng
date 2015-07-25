@@ -1,0 +1,131 @@
+﻿<title>jp_pEng</title>
+<link rel="stylesheet" type="text/css" href="../data/css/dark_wBG.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+function getUrlVars() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
+}
+</script>
+
+<div id = "content">
+	<script src="..\data\js\main_functions.js" type="text/javascript"></script>
+	<script src="js\main.js" type="text/javascript"></script>
+	<div id = "div_sb">
+		<table width = "100%" id = "table_sb" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+					<div id = "DIVsidebar_header">
+						<b>Learning Modules</b>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = '/vocabulary/index.html'">
+						<b>Vocabulary Practice Module</b><br/>
+						For practising Vocabulary. They are all sorted in groups.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_highlighted" onclick="location.href = '/kanji/index.html'">
+						<b>Kanji Practice Module</b><br/>
+					For practising Kanji.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = '/kana/index.html'">
+						<b>Kana Practice Module</b><br/>
+					For practising ひらがな and カタカナ.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_header">
+						<b>Tools</b>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = '/vocabulary/jisho.html'">
+						<b>辞書 (げんき)</b><br/>
+						Your quick and universal source to definitions of words in each lesson.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_header">
+						<b>Miscellaneous</b>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = '/about.html'">
+						<b>About jp_pEng</b><br/>
+						Information about jp_pEng in a single paragraph of text.
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div style = "position: fixed; top: 133px; bottom: 23px; left: 320px; width: calc(100% - 320px); background: rgba(0, 0, 0, 0); box-shadow: 0 0 10px black; overflow-y: auto; overflow-x: hidden; padding-top: 32px; padding-bottom: 32px;">
+		<center>
+			<table width = 580px class = "glass">
+			<tr><td width = 40px><b><center>#</center></b></td><td><b><center>Description</center></b></td><td><b><center>Links</center></b></td></tr>
+			<script language="JavaScript">
+			for (var i = 0; i < modules.length; i += 1)
+			{
+				document.write("<tr><td><center><font size='6'>" + (i + 1) + "</font></center></td><td><b>" + modules[i] + "</b><br/>" + module_description[i] + "</td><td><center><a href = 'chart.html?lesson=" + (i + 1) + "'>Chart</a> / <a href = 'practice.html?lesson=" + (i + 1) + "'>Practice</a></center></td></tr>");
+			}
+			</script>
+			</table>
+		</center>
+	</div>
+</div>
+
+<!--Top of the page goes last... ironic.-->
+<div style = "position: fixed; z-index: 10; width: 100%; left: 0; top: 0;">
+	<table class="top_bar">
+		<tr>
+			<td valign = "middle">
+				<a href="../index.html" ><img class="back_button" src="../data/images/transparent_arrow_placement.png"/></a>
+			</td>
+			<td width = "4px">
+			</td>
+			<td valign = "bottom">
+				<font size = "7px">
+					<span style="vertical-align:bottom;">Kanji Practice</span>
+				</font>
+			</td>
+		</tr>
+		<tr height = "32px">
+			<td valign = "middle" width = "64px">
+				
+			</td>
+			<td width = "4px">
+			</td>
+			<td valign = "bottom">
+				<span style="vertical-align:bottom;">Various lessons teaching Kanji sorted by the 教育漢字 standard.</span>
+			</td>
+		</tr>
+	</table>
+	<img src = "../data/images/laser_shadow.png" width = "100%" height = "14px"/>
+</div>
+		
+		<!--Bottom of the page also. Can't forget about that!-->
+		<img src = "../data/images/laser_shadow_d.png" width = "100%" height = "14px" style="position:fixed; left: 0; bottom: 23px;"/>
+		<div id = "bottom_copyright">
+			jp_pEng - Copyright 2014, All Rights Reserved
+		</div>

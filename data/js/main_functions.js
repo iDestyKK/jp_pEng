@@ -46,28 +46,51 @@ function CheckAnswer(a, b, c, d) {
 }
 	
 function GenerateQuestion() {
-	i = Math.floor((Math.random()*kanji.length));
-	if (kanji[i] != "" && filter != "nokanji" && filter != "romaji")
-		document.getElementById('kanji').innerHTML = "<ruby><rb><font size='16'>" + kanji[i] + "</font></rb><rp>(</rp><rt><font size='3'>" + kanji_kana[i] + "</font></rt><rp>)</rp></ruby>";
+	i = Math.floor((Math.random()*vocabulary.length));
+	if (vocabulary[i] != "" && filter != "nokanji" && filter != "romaji")
+		document.getElementById('kanji').innerHTML = "<ruby><rb><font size='16'>" + vocabulary[i] + "</font></rb><rp>(</rp><rt><font size='3'>" + vocabulary_kana[i] + "</font></rt><rp>)</rp></ruby>";
 	else
 	if (filter == "romaji")
-		document.getElementById('kanji').innerHTML = "<ruby><rb><font size='16'>" + kanji_romaji[i] + "</font></rb><rp>(</rp><rt><font size='3'>&nbsp;</font></rt><rp>)</rp></ruby>";
+		document.getElementById('kanji').innerHTML = "<ruby><rb><font size='16'>" + vocabulary_romaji[i] + "</font></rb><rp>(</rp><rt><font size='3'>&nbsp;</font></rt><rp>)</rp></ruby>";
 	else
-		document.getElementById('kanji').innerHTML = "<ruby><rb><font size='16'>" + kanji_kana[i] + "</font></rb><rp>(</rp><rt><font size='3'>&nbsp;</font></rt><rp>)</rp></ruby>";
+		document.getElementById('kanji').innerHTML = "<ruby><rb><font size='16'>" + vocabulary_kana[i] + "</font></rb><rp>(</rp><rt><font size='3'>&nbsp;</font></rt><rp>)</rp></ruby>";
 	
 	document.getElementById('answer').value="";
+	
+	if (document.getElementById("cb_autoask").checked == true) {
+		generateSpeech(vocabulary_kana[i]);
+	}
 }
 	
 function ShowHint() {
 	clearTimeout(hint_timeout);
-	document.getElementById('hint').innerHTML = kanji_hint[i];
+	document.getElementById('hint').innerHTML = vocabulary_hint[i];
 	var hint_timeout = setTimeout("document.getElementById('hint').innerHTML = '';",5000);
 }
 
 function AddModule(a,b,c) {
 	//This function adds in modules for you to select in the menu.
-	modules           [mod_size] = a;
-	module_description[mod_size] = b;
-	module_path       [mod_size] = c;
-	mod_size += 1;
+	v_modules           [v_mod_size] = a;
+	v_module_description[v_mod_size] = b;
+	v_module_path       [v_mod_size] = c;
+	v_mod_size += 1;
+}
+
+function AddCategory(a) {
+	//addLesson(lesson, codeid, file)
+	v_modules  [v_module_id.length  ] = a;
+	v_module_id[v_module_id.length++] = 0; //Category
+	cur_cat++;
+	v_mod_size = 0;
+}
+
+function AddVModuleCat(a,b,c) {
+	//This function adds in modules for you to select in the menu.
+	v_modules           [v_module_id.length  ] = a;
+	v_module_description[v_module_id.length  ] = b;
+	v_module_path       [v_module_id.length  ] = c;
+	v_module_category   [v_module_id.length  ] = cur_cat;
+	v_module_id         [v_module_id.length  ] = 1;
+	v_module_count      [v_module_id.length++] = v_mod_size; //Question
+	v_mod_size++;
 }

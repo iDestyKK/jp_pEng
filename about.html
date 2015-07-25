@@ -1,6 +1,7 @@
 ﻿<title>jp_pEng</title>
-<link rel="stylesheet" type="text/css" href="data/css/dark_wBG.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<link rel="stylesheet" type="text/css" href="data/css/dark_wBG.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="data/js/lang_data.js"></script>
 <script>
 function getUrlVars() {
 	var vars = {};
@@ -11,28 +12,60 @@ function getUrlVars() {
 }
 </script>
 
+<style type = "text/css">
+	a:visited {
+		color: #FFFFFF;
+	}
+	a:link {
+		color: #FFFFFF;
+	}
+</style>
+
+<!-- Gather Statistics on who visits this site -->
+<div id = "statistics">
+	<img src="http://www.easycounter.com/counter.php?jppeng" border="0" alt="Web Site Hit Counter">
+</div>
+
+<!-- NOW moving onto the real stuff... -->
 <body>
 	<div id = "content">
 		<center>
-			<div style="width:800px">
-			jp_pEng is software written by 禎良　来良蘭 (me) out of boredom in aid for Japanese tutoring. I could have written it in a real programming language but decided that a website would be the best way to go. Click a module, a section, and then finally a lesson and practice! You are also given a chart which you can use to study from. Happy practicing! :)
+			<div id = "div_glass" style="width:800px;">
+				<div style = "background-color: rgba(0,0,0,0.7); padding: 10px 24px 24px 24px; text-shadow: 0px 0px 5px black;">
+					<center>
+						<h2>jp_pEng</h2>
+						<span style = "position: relative; bottom: 8px;">Version: <script type = "text/javascript">document.write(text_data["en"]["version"]);</script></span></br>
+					</center>
+					<h3 style = "border-bottom: 1px solid white; margin-bottom: 4px; text-shadow: 0px 0px 5px black, 0px 0px 10px black;">General</h3>
+					"jp_pEng" is a DERPG Web App written by テイラー<ruby><rb>利恵</rb><rp>(</rp><rt>りえ</rt><rp>)</rp></ruby> (me) out of boredom in aid for Japanese tutoring. The concept is very simple: Click a module, a section, and then finally a lesson and practise! You are also given a chart which you can use to study from, as well as randomly generated Worksheets. There is also a 辞書 for looking up words from the Vocabulary Section. Take full advantage of this Web App that I wrote. Happy practicing! :)
+					<br/><br/>～テイラー利恵
+					
+					<h3 style = "border-bottom: 1px solid white; margin-bottom: 4px; text-shadow: 0px 0px 5px black, 0px 0px 10px black;">Usage</h3>
+					I am going to be really bold on this one. I do not care about how you use this web app and it is allowed to be used by anyone at any time. I cite all sources of information that I get if it is not written by me. There are no ads on this site as I do not want to generate revenue (yet). However, I do not want people requesting information to be put on here unless there is a good reason (Hence why my contact info is missing).
+					
+					<h3 style = "border-bottom: 1px solid white; margin-bottom: 4px; text-shadow: 0px 0px 5px black, 0px 0px 10px black;">More Links</h3>
+					These links may be of particular interest.
+					<ul>
+						<li><a href = "http://wiki.derpg.xyz/index.php?title=Jp_pEng" target = "_blank">DERPG Wiki page for "jp_pEng"</a></li>
+						<li><a href = "http://en.wikipedia.org/wiki/Ky%C5%8Diku_kanji" target = "_blank">[Wikipedia] 教育漢字</a></li>
+					</ul>
+				</div>
 			</div>
-			<br/><a href = "index.html">Back to the Main Menu</a>
 		</center>
 	</div>
 
 	<!--Top of the page goes last... ironic.-->
-	<div style = "position: fixed; z-index: 10; width: 100%; left: 0; top: 0;">
+	<div id = "top_blurbar">
 		<table class="top_bar">
 			<tr>
-				<td valign = "middle">
+				<td valign = "middle" width = "70px">
 					<a href="index.html" ><img class="back_button" src="data/images/transparent_arrow_placement.png"/></a>
 				</td>
 				<td width = "4px">
 				</td>
 				<td valign = "bottom">
 					<font size = "7px">
-						<span style="vertical-align:bottom;">Help</span>
+						<span style="vertical-align:bottom;">About jp_pEng</span>
 					</font>
 				</td>
 			</tr>
@@ -43,7 +76,7 @@ function getUrlVars() {
 				<td width = "4px">
 				</td>
 				<td valign = "bottom">
-					<span style="vertical-align:bottom;">What is this?</span>
+					<span style="vertical-align:bottom;">Information about jp_pEng in a single paragraph of text.</span>
 				</td>
 			</tr>
 		</table>
@@ -53,6 +86,6 @@ function getUrlVars() {
 	<!--Bottom of the page also. Can't forget about that!-->
 	<img src = "data/images/laser_shadow_d.png" width = "100%" height = "14px" style="position:fixed; left: 0; bottom: 23px;"/>
 	<div id = "bottom_copyright">
-		jp_pEng - Copyright 2014, All Rights Reserved
+			<script type = "text/javascript">document.write(text_data["en"]["copyright"]);</script>
 	</div>
 </body>

@@ -1,6 +1,7 @@
 ﻿<title>jp_pEng</title>
-<link rel="stylesheet" type="text/css" href="../data/css/dark_wBG.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<link rel="stylesheet" type="text/css" href="../data/css/dark_wBG.css">
+	<script type="text/javascript" src="../data/js/lang_data.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 function getUrlVars() {
 	var vars = {};
@@ -8,6 +9,10 @@ function getUrlVars() {
 		vars[key] = value;
 	});
 	return vars;
+}
+
+function generateSpeech(str) {
+	document.getElementById("audio_hidden").innerHTML = "<audio controls=\"controls\" height=\"100\" width=\"100\" autoplay=\"true\"><source src=\"http://translate.google.com/translate_tts?ie=UTF-8&tl=JA-jp&q=%20" + str + "\" type=\"audio/mp3\"></audio>";
 }
 </script>
 
@@ -17,6 +22,12 @@ function getUrlVars() {
 	}
 </style>
 
+<!-- Gather Statistics on who visits this site -->
+<div id = "statistics">
+	<img src="http://www.easycounter.com/counter.php?jppeng" border="0" alt="Web Site Hit Counter">
+</div>
+
+<!-- NOW moving onto the real stuff... -->
 <script language="JavaScript">
 	var lesson = getUrlVars()["lesson"];
 	var mode = getUrlVars()["mode"];
@@ -25,24 +36,24 @@ function getUrlVars() {
 <script src="..\data\js\main_functions.js" type="text/javascript"></script>
 <script src="js\main.js" type="text/javascript"></script>
 <script language="JavaScript">
-	document.write('<script src="' + module_path[lesson - 1] + '" type="text/javascript">');
+	document.write('<script src="' + v_module_path[lesson - 1] + '" type="text/javascript">');
 </script></script>
 <body>
 	<div id = "content">
 		<center>
 			<strong>Kanji/Kana:</strong><br />
 			<script language="JavaScript">
-			var i = Math.floor((Math.random()*kanji.length));
+			var i = Math.floor((Math.random()*vocabulary.length));
 			var correct = 0;
 			var incorrect = 0;
 			var question_type = 0; //This is temporary. Later on, I will add in Kana and romanized support.
-			if (kanji[i] != "" && filter != "nokanji" && filter != "romaji")
-				document.write("<p id = 'kanji'><ruby><rb><font size='16'>" + kanji[i] + "</font></rb><rp>(</rp><rt><font size='3'>" + kanji_kana[i] + "</font></rt><rp>)</rp></ruby></p>");
+			if (vocabulary[i] != "" && filter != "nokanji" && filter != "romaji")
+				document.write("<p id = 'kanji'><ruby><rb><font size='16'>" + vocabulary[i] + "</font></rb><rp>(</rp><rt><font size='3'>" + vocabulary_kana[i] + "</font></rt><rp>)</rp></ruby></p>");
 			else
 			if (filter == "romaji")
-				document.write("<p id = 'kanji'><ruby><rb><font size='16'>" + kanji_romaji[i] + "</font></rb><rp>(</rp><rt><font size='3'>&nbsp;</font></rt><rp>)</rp></ruby></p>")
+				document.write("<p id = 'kanji'><ruby><rb><font size='16'>" + vocabulary_romaji[i] + "</font></rb><rp>(</rp><rt><font size='3'>&nbsp;</font></rt><rp>)</rp></ruby></p>")
 			else
-				document.write("<p id = 'kanji'><ruby><rb><font size='16'>" + kanji_kana[i] + "</font></rb><rp>(</rp><rt><font size='3'>&nbsp;</font></rt><rp>)</rp></ruby></p>")
+				document.write("<p id = 'kanji'><ruby><rb><font size='16'>" + vocabulary_kana[i] + "</font></rb><rp>(</rp><rt><font size='3'>&nbsp;</font></rt><rp>)</rp></ruby></p>")
 			
 			</script>
 			<br />
@@ -57,7 +68,8 @@ function getUrlVars() {
 				</p>
 			</strong>
 			<input type="text" input class="vx_text" id="answer" size="20" onkeydown="if (event.keyCode == 13) document.getElementById('btnGen').click()" value=""/>
-			<input class="vx_button" type="button" id="btnGen" value="Check Answer" onclick="CheckAnswer(document.getElementById('answer').value, kanji_meaning[i], kanji_romaji[i], question_type);" /><input class="vx_button" type="button" id="btnGen" value="Help" onclick="ShowHint();" />
+			<input class="vx_button" type="button" id="btnGen" value="Check Answer" onclick="CheckAnswer(document.getElementById('answer').value, vocabulary_meaning[i], vocabulary_romaji[i], question_type);" /><input class="vx_button" type="button" id="btnGen" value="Pronounce" onclick="generateSpeech(vocabulary_kana[i]);" />
+			</br></br><input type="checkbox" id="cb_autoask" value="Autoask">Auto-speak every word upon being asked.
 			<!--if (document.getElementById('answer').value.toLowerCase() == kanji_meaning[i].toLowerCase() || document.getElementById('answer').value.toLowerCase() == kanji_romaji[i].toLowerCase()) {CorrectAnswer();} else {WrongAnswer();}-->
 			<br/><p id='hint'></p>
 			<br/><table width=180px><br/>
@@ -96,12 +108,17 @@ function getUrlVars() {
 		</div>
 		</center>
 	</div>
-
+	
+	<!--This is the audio that can be played. It will be invisible.-->
+	<div id = "audio_hidden" style = "position: fixed; right: -400;">
+		
+	</div>
+	
 	<!--Top of the page goes last... ironic.-->
-	<div style = "position: fixed; z-index: 10; width: 100%; left: 0; top: 0;">
+	<div id = "top_blurbar">
 		<table class="top_bar">
 			<tr>
-				<td valign = "middle">
+				<td valign = "middle" width = "70px">
 					<a href="index.html" ><img class="back_button" src="../data/images/transparent_arrow_placement.png"/></a>
 				</td>
 				<td width = "4px">
@@ -109,7 +126,7 @@ function getUrlVars() {
 				<td valign = "bottom">
 					<font size = "7px">
 						<span style="vertical-align:bottom;">
-								<script language = "Javascript">document.write("Vocabulary Practice - " + modules[lesson - 1]);</script>
+								<script language = "Javascript">document.write("Vocabulary Practice - " + v_modules[lesson - 1]);</script>
 						</span>
 					</font>
 				</td>
@@ -123,7 +140,7 @@ function getUrlVars() {
 				<td valign = "bottom">
 					<span style="vertical-align:bottom;">
 						<script language="JavaScript">
-							document.write(module_description[lesson - 1]);
+							document.write(v_module_description[lesson - 1]);
 						</script>
 					</span>
 				</td>
@@ -135,6 +152,6 @@ function getUrlVars() {
 	<!--Bottom of the page also. Can't forget about that!-->
 	<img src = "../data/images/laser_shadow_d.png" width = "100%" height = "14px" style="position:fixed; left: 0; bottom: 23px;"/>
 	<div id = "bottom_copyright">
-		jp_pEng - Copyright 2014, All Rights Reserved
+			<script type = "text/javascript">document.write(text_data["en"]["copyright"]);</script>
 	</div>
 </body>

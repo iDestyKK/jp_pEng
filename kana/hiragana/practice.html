@@ -1,6 +1,7 @@
 ﻿<title>jp_pEng</title>
-<link rel="stylesheet" type="text/css" href="../../data/css/dark_wBG.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../data/css/dark_wBG.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="../../data/js/lang_data.js"></script>
 <script>
 function getUrlVars() {
 	var vars = {};
@@ -118,10 +119,10 @@ function getUrlVars() {
 	</div>
 
 	<!--Top of the page goes last... ironic.-->
-	<div style = "position: fixed; z-index: 10; width: 100%; left: 0; top: 0;">
+	<div id = "top_blurbar">
 		<table class="top_bar">
 			<tr>
-				<td valign = "middle">
+				<td valign = "middle" width = "70px">
 					<a href="../index.html" ><img class="back_button" src="../../data/images/transparent_arrow_placement.png"/></a>
 				</td>
 				<td width = "4px">
@@ -153,6 +154,6 @@ function getUrlVars() {
 	<!--Bottom of the page also. Can't forget about that!-->
 	<img src = "../../data/images/laser_shadow_d.png" width = "100%" height = "14px" style="position:fixed; left: 0; bottom: 23px;"/>
 	<div id = "bottom_copyright">
-		jp_pEng - Copyright 2014, All Rights Reserved
+			<script type = "text/javascript">document.write(text_data["en"]["copyright"]);</script>
 	</div>
 </body>

@@ -1,0 +1,46 @@
+﻿//Modules
+var mod_size = 0;
+modules            = new Array();
+module_path        = new Array();
+module_description = new Array();
+module_id          = new Array();
+module_category    = new Array();
+module_count       = new Array();
+
+//Current category.
+var cur_cat = 0;
+
+AddCategory("Lesson 1");
+AddModuleCat("L1","Used for Workbook pages 15-16","js/modules/lesson1/lesson1.js");
+
+AddCategory("Lesson 2");
+AddModuleCat("Words That Point","Used for Workbook pages?","js/modules/lesson2/lesson2_1_wtp.js");
+AddModuleCat("Food","Used for Workbook pages?","js/modules/lesson2/lesson2_2_food.js");
+AddModuleCat("Things","Used for Workbook pages?","js/modules/lesson2/lesson2_3_things.js");
+AddModuleCat("Places","Used for Workbook pages?","js/modules/lesson2/lesson2_4_places.js");
+
+AddCategory("Lesson 3");
+AddModuleCat("Nouns","Used for Workbook pages?","js/modules/lesson3/lesson3_1_nouns.js");
+AddModuleCat("Food and Drinks","Used for Workbook pages?","js/modules/lesson3/lesson3_2_foodanddrinks.js");
+AddModuleCat("Places","Used for Workbook pages?","js/modules/lesson3/lesson3_3_places.js");
+AddModuleCat("Time","Used for Workbook pages?","js/modules/lesson3/lesson3_4_time.js");
+AddModuleCat("Verbs","Used for Workbook pages?","js/modules/lesson3/lesson3_5_verbs.js");
+AddModuleCat("Adjectives","Used for Workbook pages?","js/modules/lesson3/lesson3_6_adjectives.js");
+AddModuleCat("Adverbs","Used for Workbook pages?","js/modules/lesson3/lesson3_7_adverbs.js");
+AddModuleCat("Expressions","Used for Workbook pages?","js/modules/lesson3/lesson3_8_expressions.js");
+
+AddCategory("Lesson 4");
+AddModuleCat("Activities","Used for Workbook pages?","js/modules/lesson4/lesson4_1_activities.js");
+AddModuleCat("People and Things","Used for Workbook pages?","js/modules/lesson4/lesson4_2_peopleandthings.js");
+AddModuleCat("Places","Used for Workbook pages?","js/modules/lesson4/lesson4_3_places.js");
+AddModuleCat("Time","Used for Workbook pages?","js/modules/lesson4/lesson4_4_time.js");
+AddModuleCat("Verbs (-ru and -u)","Used for Workbook pages?","js/modules/lesson4/lesson4_5_verbs.js");
+AddModuleCat("Adverbs and Other Expressions","Used for Workbook pages?","js/modules/lesson4/lesson4_6_adverbsotherexpressiosn.js");
+
+AddCategory("Lesson 5");
+AddModuleCat("Nouns","Used for Workbook pages?","js/modules/lesson5/lesson5_1_nouns.js");
+AddModuleCat("い-Adjectives","Used for Workbook pages?","js/modules/lesson5/lesson5_2_iadj.js");
+AddModuleCat("な-Adjectives","Used for Workbook pages?","js/modules/lesson5/lesson5_3_naadj.js");
+AddModuleCat("う-Verbs","Used for Workbook pages?","js/modules/lesson5/lesson5_4_uverb.js");
+AddModuleCat("る-Verbs","Used for Workbook pages?","js/modules/lesson5/lesson5_5_ruverb.js");
+AddModuleCat("Adverbs and Other Expressions","Used for Workbook pages?","js/modules/lesson5/lesson5_6_adverbsandotherexpressions.js");

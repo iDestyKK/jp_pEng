@@ -1,0 +1,461 @@
+﻿<html>
+	<head>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript" src="../data/js/lang_data.js"></script>
+	</head>
+	
+	<style type="text/css">
+		html {
+			background: #EEEEEE;
+			margin: 0;
+			padding: 0;
+			font-family: "Myname", koz-kana, "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", sans-serif;
+			font-size:93.3%;
+		}
+		
+		#DIV_page {
+			box-shadow: 0 0 5px black;
+			background: white;
+			width: 800px;
+			min-height: 1150px;
+			float: center;
+			position:relative;
+			left: calc(50% - 400px);
+		}
+		
+		#DIV_page_cont {
+			width : calc(100% - 128px);
+			height: calc(100% - 128px);
+			padding: 64px 64px 64px 64px;
+			margin: 32px 0 32px 0;
+			display: table;
+		}
+		
+		#backpage {
+			background: #BBBBBB;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 42px;
+			bottom: 22px;
+			overflow-y: auto;
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+			box-shadow: inset -7px 0 15px black;
+		}
+		
+		#button_simple_ans, #button_simple_prt, #button_hide_results {
+			background: transparent;
+			color: black;
+			border: 2px solid black;
+			font-family: "Myname", koz-kana, "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", sans-serif;
+			font-size:93.3%;
+			height: 24px;
+		}
+		
+		@font-face {
+			font-family: 'Myname';
+			font-style: normal;
+			font-weight: 300;
+			src: url('../data/fonts/Titillium-Thin.otf');
+		}
+
+		@font-face {
+			font-family: exo;
+			src: url('../data/fonts/EXO-REGULAR.OTF');
+		}
+
+		@font-face {
+			font-family: koz-kana;
+			src: url('../data/fonts/KozGoPro-Light.otf');
+		}
+		
+		li {
+			font-size: 18px;
+			margin: 0 0 0 0;
+			line-height: 175%;
+		}
+
+		li #lis {
+			font-size: 18px;
+		}
+
+		li #lir {
+			font-size: 18px;
+		}
+		
+		@media print {
+			#Header, #Footer { display: none !important; }
+		}
+		
+		#nonumber {
+			list-style-type: none;
+			color: transparent;
+		}
+		
+		#borderb {
+			margin : 0 0 -1px 0;
+			padding: 0 0 0 0;
+			border-bottom: 1px solid black;
+			min-width: 256px;
+		}
+		
+		#DIVwelcomeBAK, #DIVgradedBAK {
+			zindex: 100000;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background: rgba(0, 0, 0, 0.5);
+		}
+		
+		#DIVgradedBAK {
+			position: absolute;
+			left: -150%;
+		}
+		
+		#DIVwelcome, #DIVgraded {
+			zindex: 100001;
+			width: 100%;
+			position: absolute;
+			left: 0;
+			top: calc(50% - 130px);
+			height: 260px;
+			background: rgba(255, 255, 255, 0.85);
+			box-shadow: 0px 0px 5px black;
+			text-align: center;
+			border-bottom: 1px solid black;
+			border-top   : 1px solid black;
+		}
+		
+		.vx_text {
+			width: 100%; 
+			box-sizing: border-box;
+			-webkit-box-sizing:border-box;
+			-moz-box-sizing: border-box;
+			border: 0px solid transparent;
+			border-bottom: 1px solid black;
+			font-family: "Myname", koz-kana, "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", sans-serif;
+			height: 24px;
+			position: relative;
+			top: -8px;
+			font-size:16px;
+		}
+		
+		#statistics {
+			position: fixed;
+			left: 100%;
+		}
+	</style>
+	
+	<!-- Gather Statistics on who visits this site -->
+	<div id = "statistics">
+		<img src="http://www.easycounter.com/counter.php?jppeng" border="0" alt="Web Site Hit Counter">
+	</div>
+
+	<!-- NOW moving onto the real stuff... -->
+	
+	<!--Initialize other scripts-->
+	<script src="..\data\js\kanji_functions.js" type="text/javascript"></script>
+	<script src="js\main.js" type="text/javascript"></script>
+	
+	<script type = "text/Javascript">				
+		function printDiv(divName) {
+			var printContents = document.getElementById(divName).innerHTML;     
+			var originalContents = document.body.innerHTML;       
+			document.body.innerHTML = printContents;      
+			window.print();      
+			document.body.innerHTML = originalContents;
+		}
+		
+		function getUrlVars() {
+			var vars = {};
+			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+				vars[key] = value;
+			});
+			return vars;
+		}
+		
+		var lesson = getUrlVars()["lesson"]; //GET THE CURRENT LESSON!
+		var type   = getUrlVars()["type"  ]; //Type of Worksheet to Generate
+		
+		function generateWorksheet(lesson, type) {
+			//Pretty much we are going to generate the lesson content here and quiz people on it...
+			//Header
+			document.write("<center><font size = \"7px\">" + modules[lesson - 1] + "</font></center></br>");
+			
+			//Directions
+			switch (parseInt(type,0)) {
+				case 0:
+					document.write("<b>DIRECTIONS</b>: Offer the correct English Translation for each of the following questions below.");
+					break;
+				case 1:
+					document.write("<b>DIRECTIONS</b>: Offer the correct Japanese Translation for each of the following questions below.");
+					break;
+				case 2:
+					document.write("<b>DIRECTIONS</b>: Offer the correct English Translation for each of the following questions below.");
+					break;
+			}
+			
+			//Separator
+			//document.write("<hr color = \"#333333\">");
+			document.write("<br/>");
+			var mass_import;
+			if (module_id[lesson - 1] == 0) {
+				//Is Category
+				mass_import = true;
+				
+				var currentlesson = parseInt(lesson);
+				var kar = 0;
+				while (module_id[currentlesson] == 1) {
+					document.write("<h2>" + modules[currentlesson] + "</h2>");
+					printQuestionsFromWorksheet(kar++);
+					currentlesson += 2;
+				}
+			}
+			else {
+				document.write("<br/>");
+				mass_import = false;
+				printQuestionsFromWorksheet(-1);
+			}
+		}
+		
+		function printQuestionsFromWorksheet(ind) {
+			if (ind == -1) {
+				var kanjit = kanji.slice(0);
+				var kanji_onyumit = kanji_onyumi.slice(0);
+				var kanji_kunyumit = kanji_kunyumi.slice(0);
+				var kanji_meaningt = kanji_meaning.slice(0);
+				var kanji_hintt = kanji_hint.slice(0);
+			}
+			else {
+				var kanjit = kanji.slice(sectionmark[ind], sectionmark[ind + 1]);
+				var kanji_onyumit = kanji_onyumi.slice(sectionmark[ind], sectionmark[ind + 1]);
+				var kanji_kunyumit = kanji_kunyumi.slice(sectionmark[ind], sectionmark[ind + 1]);
+				var kanji_meaningt = kanji_meaning.slice(sectionmark[ind], sectionmark[ind + 1]);
+				var kanji_hintt = kanji_hint.slice(sectionmark[ind], sectionmark[ind + 1]);
+			}
+			
+			//Randomizer for questions.
+			rng = new Array();
+			_answer = new Array();
+			
+			for (var i = 0; i < kanjit.length; i++) {
+				rng[i] = -1;
+			}
+			var ind;
+			for (var i = 0; i < kanjit.length; i++) {
+				while (true) {
+					ind = Math.floor(Math.random() * kanjit.length);
+					if (rng[ind] == -1) {
+						rng[ind] = i;
+						break;
+					}
+				}
+			}
+			
+			switch (parseInt(type,0)) {
+				case 0:
+					//Generate questions
+					document.write("<table width=100%><tr><td>");
+					document.write("<ol>");
+					for (var i = 0; i < kanjit.length; i++) {
+						document.write("<li width = \"1px\"><span id = \"lis\">" + kanjit[rng[i]] + "</span></li>");
+					}
+					document.write("</ol>");
+					document.write("</td><td>");
+					document.write("<ol id = \"nonumber\">");
+					for (var i = 0; i < kanjit.length; i++) {
+						document.write("<li><input type=\"text\" input class=\"vx_text\" id=\"answer" + i + "\" size=\"40\" onkeydown=\"\" value=\"\"/></li>");
+						_answer[i] = kanji_meaningt[rng[i]];
+					}
+					document.write("</ol>");
+					document.write("</td></tr></table>");
+					break;
+				case 1:
+					//Generate questions
+					document.write("<table><tr><td>");
+					document.write("<ol>");
+					for (var i = 0; i < kanjit.length; i++) {
+						document.write("<li><span id = \"lis\">" + kanjit[rng[i]] + "</span></li>");
+					}
+					document.write("</ol>");
+					document.write("</td><td>");
+					document.write("<ol id = \"nonumber\">");
+					for (var i = 0; i < kanjit.length; i++) {
+						document.write("<li><input type=\"text\" input class=\"vx_text\" id=\"answer" + i + "\" size=\"40\" onkeydown=\"\" value=\"\"/></li>");
+						_answer[i] = "";
+						if (kanji_kunyumit[rng[i]] != "")
+							_answer[i] += kanji_kunyumit[rng[i]];
+						if (kanji_onyumit[rng[i]] != "" && kanji_kunyumit[rng[i]] != "")
+							_answer[i] += ";";
+						if (kanji_onyumit[rng[i]] != "")
+						_answer[i] += kanji_onyumit[rng[i]];
+					}
+					document.write("</ol>");
+					document.write("</td></tr></table>");
+					break;
+				case 2:
+					//Generate questions
+					document.write("<table><tr><td>");
+					document.write("<ol>");
+					for (var i = 0; i < kanjit.length; i++) {
+						document.write("<li><span id = \"lis\">" + kanji_meaningt[rng[i]] + "</span></li>");
+					}
+					document.write("</ol>");
+					document.write("</td><td>");
+					document.write("<ol id = \"nonumber\">");
+					for (var i = 0; i < kanjit.length; i++) {
+						document.write("<li><input type=\"text\" input class=\"vx_text\" id=\"answer" + i + "\" size=\"40\" onkeydown=\"\" value=\"\"/></li>");
+						_answer[i] = "";
+						_answer[i] = kanjit[rng[i]];
+					}
+					document.write("</ol>");
+					document.write("</td></tr></table>");
+					break;
+			}
+		}
+		
+		
+			
+		function gradeQuestions() {
+			var correct = 0;
+			for (var i = 0; i < kanji.length; i++) {
+				var res = _answer[i].split(";");
+				var ans = false;
+
+				for (var ii = 0; ii < res.length; ii++) {
+					//SCAN THEM!
+					if (res[ii].toLowerCase() == document.getElementById("answer" + i).value.toLowerCase()) {
+						ans = true;
+						document.getElementById("answer" + i).style.color = "green";
+						break;
+					}
+				}
+
+				if (ans == true)
+					correct++;
+				else
+					document.getElementById("answer" + i).style.color = "red";
+				
+				//Did someone leave a blank answer? Shame.
+				if (document.getElementById("answer" + i).value == "") {
+					document.getElementById("answer" + i).value = "<LEFT BLANK>"
+				}
+				//Finally, make the box readonly so they can not modify their answers.
+				document.getElementById("answer" + i).setAttribute('readonly', 'readonly');
+				
+			}
+			var grade = (correct / kanji.length) * 100;
+			return grade;
+		}
+		
+		var answers_show = false;
+		
+		function gradeQuiz() {
+			var score = gradeQuestions();
+			document.getElementById("score_h").innerHTML = "Your score is: <b>" + Math.round(score * 100) / 100 + "%</b>";
+			document.getElementById("DIVgradedBAK").style.left = "0px";
+		}
+		
+		function swapcolours() {
+			if (answers_show == true) {
+				gradeQuiz(); //Make Results Reappear. HACK: If you can edit the entries, this resubmits them for regrading. ;)
+			}
+			else {
+				document.getElementById("button_simple_ans").value = "Show Results";
+				gradeQuiz();
+				answers_show = true;
+			}
+		}
+	</script>
+	
+	<!--Begin writing the page-->
+	<body>
+		<div id = "backpage">
+			<div id = "DIV_page">
+				<div id = "DIV_page_cont">
+					<script type="text/JavaScript">
+							if (module_id[lesson - 1] == 0) {
+								//Is Category
+								var mass_import = true;
+								
+								var section_cnt = 0;
+								sectionmark = new Array();
+								
+								count = 0;
+								
+								kanji         = new Array();
+								kanji_romaji  = new Array();
+								kanji_kana    = new Array();
+								kanji_meaning = new Array();
+								kanji_hint    = new Array();
+								
+								var currentlesson = parseInt(lesson);
+								while (module_id[currentlesson] == 1) {
+									document.write('<scr'+'ipt src="' + module_path[currentlesson] + '" type="text/javascript" ></scr'+'ipt>');
+									currentlesson += 2;
+								}
+							}
+							else
+								document.write('<scr'+'ipt src="' + module_path[lesson - 1] + '" type="text/javascript" ></scr'+'ipt>');
+					</script>
+					<script type = "text/Javascript">
+						generateWorksheet(lesson, type);
+					</script>
+				</div>
+			</div>
+		</div>
+		jp_pEng Worksheet Generator - 
+		<script type = "text/Javascript">
+			if (module_id[lesson - 1] == 0)
+				document.write(modules[lesson - 1] + " (Entire Review)");
+			else
+				document.write(modules[lesson - 1] + " (" + module_path[lesson - 1] + ")");
+		</script>
+		<div style = "position: fixed; right: 9px; top: 9px;">
+			<input type='button' id="button_simple_ans" value='Grade Worksheet' onclick='swapcolours();'/>
+			<input type='button' id="button_simple_prt" value='Print Page'   onclick='printDiv("DIV_page_cont");'/>
+			<script type = "text/Javascript">
+				if (module_id[lesson - 1] == 0)
+					document.getElementById("button_simple_ans").style.display = "none";
+			</script>
+		</div>
+		<div style = "position:fixed; bottom: 2px; width: 800px; left: calc(50% - 400px);">
+			<center>
+				<script type = "text/javascript">document.write(text_data["en"]["copyright"]);</script>
+			</center>
+		</div>
+		
+		<!-- This is for if a person clicks the Worksheet link for the first time. There is no quiz type specified so we need to ask them what they want! -->
+		<div id = "DIVwelcomeBAK">
+			<div id = "DIVwelcome">
+				<h1>Welcome to Worksheets! (Beta)</h1>
+				To proceed, select what kind of Worksheet you would want to generate:<br/>
+				<script type = "text/Javascript">
+					document.write("<h3><a href = \"worksheet.html?lesson=" + lesson + "&type=0\">漢字 -> English</a></h3>");
+					document.write("<h3><a href = \"worksheet.html?lesson=" + lesson + "&type=1\">漢字 -> Kana</a></h3>");
+					document.write("<h3><a href = \"worksheet.html?lesson=" + lesson + "&type=2\">English -> Kana/漢字</a></h3>");
+				</script>
+			</div>
+		</div>
+		<script type = "text/Javascript">
+			if (type) {
+				//THIS IS TOTALLY CHEATING...
+				var div = document.getElementById("DIVwelcomeBAK");
+				div.parentNode.removeChild(div);
+			}
+		</script>
+		
+		<div id = "DIVgradedBAK">
+			<div id = "DIVgraded">
+				<h1>Test Graded!</h1>
+				Tests can not be redone after being graded. If you want to achieve a higher score, study and retake the quiz.<br/>
+				<p id = "score_h">NaN</p>
+				<input type='button' id="button_hide_results" value='Hide Results' onclick='document.getElementById("DIVgradedBAK").style.left = "-150%";'/>
+				<input type='button' id="button_hide_results" value='New Quiz' onclick='location.reload();'/>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,246 @@
+﻿<title>jp_pEng</title>
+	<link rel="stylesheet" type="text/css" href="../data/css/dark_wBG.css">
+	<script type="text/javascript" src="../data/js/lang_data.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+function getUrlVars() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
+}
+</script>
+
+
+<!-- Gather Statistics on who visits this site -->
+<div id = "statistics">
+	<img src="http://www.easycounter.com/counter.php?jppeng" border="0" alt="Web Site Hit Counter">
+</div>
+
+<!-- NOW moving onto the real stuff... -->
+<div id = "content" style = "overflow-x: hidden;">
+	<script src="..\data\js\main_functions.js" type="text/javascript"></script>
+	<script src="js\main.js" type="text/javascript"></script>
+	<div id = "div_sb">
+		<table width = "100%" id = "table_sb" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+					<div id = "DIVsidebar_header">
+						<b>Learning Modules</b>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = '/vocabulary/index.html'">
+						<b>Vocabulary Practice Module</b><br/>
+						For practising Vocabulary. They are all sorted in groups.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = '/kanji/index.html'">
+						<b>Kanji Practice Module</b><br/>
+					For practising Kanji.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = '/kana/index.html'">
+						<b>Kana Practice Module</b><br/>
+					For practising ひらがな and カタカナ.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_header">
+						<b>Tools</b>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_highlighted" onclick="location.href = '/vocabulary/jisho.html'">
+						<b>辞書 (げんき)</b><br/>
+						Your quick and universal source to definitions of words in each lesson.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = '/kanji/jisho.html'">
+						<b>漢字リスト</b><br/>
+						List of Kanji in the Kanji Module all in one location. Easily searchable.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_header">
+						<b>Miscellaneous</b>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = '/mod/index.html'">
+						<b>Modifications/Development</b><br/>
+						Access the tools used to write jp_pEng resources and get data.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = '/about.html'">
+						<b>About jp_pEng</b><br/>
+						Information about jp_pEng in a single paragraph of text.
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div style = "position: fixed; top: 133px; bottom: 23px; left: 320px; width: calc(100% - 320px); background: rgba(0, 0, 0, 0); box-shadow: 0 0 10px black; overflow-y: auto; overflow-x: hidden; padding-top: 32px; padding-bottom: 32px;">
+		<center>
+			<script language="JavaScript">
+			//Get the ID of this shit
+			var word_id = getUrlVars()["id"];
+			
+			var intable = false;
+			//Is Category
+			var mass_import = true;
+			
+			var section_cnt = 0;
+			sectionmark = new Array();
+			
+			var lesson_cnt = 0;
+			lessonmark = new Array();
+			
+			count = 0;
+			
+			vocabulary         = new Array();
+			vocabulary_romaji  = new Array();
+			vocabulary_kana    = new Array();
+			vocabulary_meaning = new Array();
+			vocabulary_hint    = new Array();
+			vocabulary_lesson  = new Array();
+			vocabulary_type    = new Array();
+			
+			for (var i = 0; i < v_module_id.length; i += 1)
+			{
+				switch (v_module_id[i]) {
+					case 0:
+						break;
+					case 1:	
+						//Section
+						document.write('<scr'+'ipt src="' + v_module_path[i] + '" type="text/javascript" ></scr'+'ipt>');
+						break;
+				}
+			}			
+			</script>
+			
+			<script type = "text/javascript">
+				//Go through each character and give it a lesson ID.
+				var prev = 0;
+				var cnt = 0;
+				for (var i = 0; i < vocabulary.length; i++ ) {
+					while (i > sectionmark[prev + 1] && prev < section_cnt) {
+						prev++;
+						cnt++;
+						while (typeof v_modules[cnt + 1] === 'undefined' || v_modules[cnt + 1].indexOf("Lesson") == 0) {
+							cnt += 1;
+						}
+					}
+					vocabulary_lesson[i] = cnt;
+				}
+			</script>
+			
+			<!-- Generate Vocabulary information -->
+			<div id = "div_glass" style = "padding: 32px 16px 16px 16px; width: 580px;">
+				<font size = "6px">
+					<center>
+						<script type = "text/javascript">
+							//Set the Page Title to the word. This helps with S
+							if (vocabulary[word_id] != "")
+								document.title = vocabulary[word_id] + " (" + vocabulary_kana[word_id] + ") - jp_pEng";
+							else
+								document.title = vocabulary_kana[word_id] + " - jp_pEng";
+							
+							if (vocabulary[word_id] != "") {
+								//Furigana
+								document.write("<ruby><rb>" + vocabulary[word_id] + "</rb><rp>(</rp><rt>" + vocabulary_kana[word_id] + "</rt><rp>)</rp></ruby>")
+							}
+							else
+							{
+								document.write("<ruby><rb>" + vocabulary_kana[word_id] + "</rb><rp>(</rp><rt>&nbsp;</rt><rp>)</rp></ruby>");
+								//document.write(vocabulary_kana[word_id]);
+							}
+						</script>
+					</center>
+				</font>
+				<br/>
+				<h2>Definition:</h2>
+				<div style = "padding-left: 24px">
+					<script type = "text/javascript">
+						document.write(vocabulary_meaning[word_id].replace(/;/g, "; "));
+					</script>
+				</div>
+				<script type = "text/javascript">
+					if (getConjugationCount(vocabulary_type[word_id]) > 0) {
+						document.write("<h2>Conjugations:</h2><div style = \"padding-left: 24px; padding-right: 24px; padding-bottom: 24px;\"><table class = \"glass\" width = \"100%\">");
+							for (var i = 0; i < getConjugationCount(vocabulary_type[word_id]); i++) {
+								document.write("<tr>");
+								document.write("<td>" + getConjugateName(i + 1, vocabulary_type[word_id]) + "</td>");
+								document.write("<td>" + conjugate(word_id, i + 1) + "</td>");
+								document.write("</tr>");
+							}
+						document.write("</table></div>");
+					}
+				</script>
+			</div>
+			
+			<script type = "text/javascript">
+				fill("");
+			</script>
+		</center>
+	</div>
+</div>
+
+<!--Top of the page goes last... ironic.-->
+<div id = "top_blurbar">
+	<table class="top_bar">
+		<tr>
+			<td valign = "middle" width = "70px">
+				<a href="../index.html" ><img class="back_button" src="../data/images/transparent_arrow_placement.png"/></a>
+			</td>
+			<td width = "4px">
+			</td>
+			<td valign = "bottom">
+				<font size = "7px">
+					<span style="vertical-align:bottom;">辞書</span>
+				</font>
+			</td>
+		</tr>
+		<tr height = "32px">
+			<td valign = "middle" width = "64px">
+				
+			</td>
+			<td width = "4px">
+			</td>
+			<td valign = "bottom">
+				<span style="vertical-align:bottom;">Your quick and universal source to definitions of words in each lesson.</span>
+			</td>
+		</tr>
+	</table>
+	<img src = "../data/images/laser_shadow.png" width = "100%" height = "14px"/>
+</div>
+		
+		<!--Bottom of the page also. Can't forget about that!-->
+		<img src = "../data/images/laser_shadow_d.png" width = "100%" height = "14px" style="position:fixed; left: 0; bottom: 23px;"/>
+		<div id = "bottom_copyright">
+			<script type = "text/javascript">document.write(text_data["en"]["copyright"]);</script>
+		</div>

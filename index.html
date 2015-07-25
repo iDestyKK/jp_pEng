@@ -1,6 +1,8 @@
 ﻿<title>jp_pEng</title>
-<link rel="stylesheet" type="text/css" href="data/css/dark_wBG.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<link rel="stylesheet" type="text/css" href="data/css/dark_wBG.css">
+	<link rel="stylesheet" type="text/css" href="data/css/newsfeed.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="data/js/lang_data.js"></script>
 <script>
 function getUrlVars() {
 	var vars = {};
@@ -11,70 +13,178 @@ function getUrlVars() {
 }
 </script>
 
+<!-- Gather Statistics on who visits this site -->
+<div id = "statistics">
+	<img src="http://www.easycounter.com/counter.php?jppeng" border="0" alt="Web Site Hit Counter">
+</div>
+
+<!-- NOW moving onto the real stuff... -->
 <div id = "content">
 	<script src="js\main.js" type="text/javascript"></script>
-	<center>
-		<table width = 580px>
-			<tr><td width = 40px><b><center>#</center></b></td><td><b><center>Modules</center></b></td><td><b><center>Link</center></b></td></tr>
+	<div id = "div_sb">
+		<table width = "100%" id = "table_sb" cellspacing="0" cellpadding="0">
 			<tr>
 				<td>
-					<center>
-						<font size='6'>1</font>
-					</center>
-				</td>
-				<td>
-					<b>Vocabulary Practice Module</b><br/>
-					For practising Vocabulary. They are all sorted in groups.
-				</td>
-				<td>
-					<center>
-						<a href = 'vocabulary\index.html'>Enter Module</a>
-					</center>
+					<div id = "DIVsidebar_header">
+						<b>Learning Modules</b>
+					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<center>
-						<font size='6'>2</font>
-					</center>
+					<div id = "DIVsidebar_click" onclick="location.href = 'vocabulary/index.html'">
+						<b>Vocabulary Practice Module</b><br/>
+						For practising Vocabulary. They are all sorted in groups.
+					</div>
 				</td>
+			</tr>
+			<tr>
 				<td>
-					<b>Kanji Practice Module</b><br/>
+					<div id = "DIVsidebar_click" onclick="location.href = 'kanji/index.html'">
+						<b>Kanji Practice Module</b><br/>
 					For practising Kanji.
-				</td>
-				<td>
-					<center>
-						<a href = 'kanji\index.html'>Enter Module</a>
-					</center>
+					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<center>
-						<font size='6'>3</font>
-					</center>
-				</td>
-				<td>
-					<b>Kana Practice Module</b><br/>
+					<div id = "DIVsidebar_click" onclick="location.href = 'kana/index.html'">
+						<b>Kana Practice Module</b><br/>
 					For practising ひらがな and カタカナ.
+					</div>
 				</td>
+			</tr>
+			<tr>
 				<td>
-					<center>
-						<!--<a href = 'kanji\index.html'>Enter Module</a>-->
-						<a href = 'kana\index.html'>Enter Module</a>
-					</center>
+					<div id = "DIVsidebar_header">
+						<b>Tools</b>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = 'vocabulary/jisho.html'">
+						<b>辞書 (げんき)</b><br/>
+						Your quick and universal source to definitions of words in each lesson.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = 'kanji/jisho.html'">
+						<b>漢字リスト</b><br/>
+						List of Kanji in the Kanji Module all in one location. Easily searchable.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_header">
+						<b>Miscellaneous</b>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = '/mod/index.html'">
+						<b>Modifications/Development</b><br/>
+						Access the tools used to write jp_pEng resources and get data.
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id = "DIVsidebar_click" onclick="location.href = 'about.html'">
+						<b>About jp_pEng</b><br/>
+						Information about jp_pEng in a single paragraph of text.
+					</div>
 				</td>
 			</tr>
 		</table>
-		<br/><a href = "about.html">About</a>
-	</center>
+	</div>
+	<div style = "position: fixed; top: 133px; bottom: 23px; left: 320px; width: calc(100% - 320px); background: rgba(0, 0, 0, 0); box-shadow: 0 0 10px black; overflow-y: auto; overflow-x: hidden;">
+		<script type="text/javascript" src="http://jppeng.tumblr.com/api/read/json"></script>
+		<center>
+		<table width = "90%" border="0" style = "border: 0; background: transparent; box-shadow: 0 0 0 transparent; min-width: 540px;">
+			<tr>
+				<td valign="top">
+					<br/>
+					<br/>
+					<script language="JavaScript">
+					function get_text_param(str) {
+						return str.substring(str.lastIndexOf("[")+1,str.lastIndexOf("]"));
+					}
+					
+					var id = getUrlVars()["id"];
+					if (id > 0)
+					{
+						var scan = parseInt(tumblr_api_read['posts-total']) - id;
+						
+						document.write("<div id = \"div_post\"><div id = \"topadd_container\"><font size = 2px>");
+						str = get_text_param(tumblr_api_read['posts'][scan]['regular-title']);
+						if (str == "")
+							document.write("Blog Post");
+						else
+							document.write(str);
+						document.write("</font></div><div id = \"post_container\">");
+						document.write("<font size = 6px>");
+						//str = tumblr_api_read['posts'][scan]['regular-title'].replace("[" + get_text_param(tumblr_api_read['posts'][scan]['regular-title']) + "] ","");
+						if (get_text_param(tumblr_api_read['posts'][scan]['regular-title']) != "")
+							str = tumblr_api_read['posts'][scan]['regular-title'].substr(get_text_param(tumblr_api_read['posts'][scan]['regular-title']).length + 3);
+						else
+							str = tumblr_api_read['posts'][scan]['regular-title'];
+						document.title = str + " - jp_pEng";
+						document.write(str);
+						document.write("</font>");
+						document.write(tumblr_api_read['posts'][scan]['regular-body']);
+						document.write("<small><div style=\"text-align:right;\">Posted on: " + tumblr_api_read['posts'][scan]['date-gmt'] + "</div></small>");
+						document.write("</div></div></br>");
+					}
+					else
+					{
+						for (var i = parseInt(tumblr_api_read['posts-start']); i < parseInt(tumblr_api_read['posts-total']); i += 1)
+						{
+							document.write("<div id = \"div_post\"><div id = \"topadd_container\"><font size = 2px>");
+							str = get_text_param(tumblr_api_read['posts'][i]['regular-title']);
+                            if (str == "")
+								document.write("Blog Post");
+                            else
+								document.write(str);
+							document.write("</font></div><div id = \"post_container\">");
+							document.write("<font size = 6px>");
+                            //str = tumblr_api_read['posts'][i]['regular-title'].replace("[" + get_text_param(tumblr_api_read['posts'][i]['regular-title']) + "] ","");
+							if (get_text_param(tumblr_api_read['posts'][i]['regular-title']) != "")
+								str = tumblr_api_read['posts'][i]['regular-title'].substr(get_text_param(tumblr_api_read['posts'][i]['regular-title']).length + 3);
+							else
+								str = tumblr_api_read['posts'][i]['regular-title'];
+                            document.write(str);
+                            document.write("</font>");
+							document.write(tumblr_api_read['posts'][i]['regular-body']);
+							document.write("<small><div style=\"text-align:right;\">[<a href = \"?id=" + (parseInt(tumblr_api_read['posts-total']) - i) + "\">Permalink</a>] - Posted on: " + tumblr_api_read['posts'][i]['date-gmt'] + "</div></small>");
+                            document.write("</div></div></br>");
+						}
+					
+						//alert(parseInt(tumblr_api_read['posts-total']));
+						/*for (var i = parseInt(tumblr_api_read['posts-start']); i < parseInt(tumblr_api_read['posts-total']); i += 1)
+						{
+							document.write("<h id = 'exo'><font size = 6px>" + tumblr_api_read['posts'][i]['regular-title'] + "</font></h>");
+							document.write("<h id = 'exo'>" + tumblr_api_read['posts'][i]['regular-body'] + "</h><br/>");
+							document.write("<h id = 'exo'><p align='right'>Posted by iDesty: " + tumblr_api_read['posts'][i]['date-gmt'] + "</p></h><img src = 'http://derpg.net/images/vx_slicediv2.png'><br/>");
+						}*/
+					}
+					</script>
+				</td>
+			</tr>
+		</table>
+		</center>
+	</div>
 </div>
 
 <!--Top of the page goes last... ironic.-->
-<div style = "position: fixed; z-index: 10; width: 100%; left: 0; top: 0;">
+<div id = "top_blurbar">
 	<table class="top_bar">
 		<tr>
-			<td valign = "middle" width = "64px">
+			<td valign = "middle" width = "70px" height = "66px">
 				
 			</td>
 			<td width = "4px">
@@ -102,5 +212,5 @@ function getUrlVars() {
 		<!--Bottom of the page also. Can't forget about that!-->
 		<img src = "data/images/laser_shadow_d.png" width = "100%" height = "14px" style="position:fixed; left: 0; bottom: 23px;"/>
 		<div id = "bottom_copyright">
-			jp_pEng - Copyright 2014, All Rights Reserved
+			<script type = "text/javascript">document.write(text_data["en"]["copyright"]);</script>
 		</div>

@@ -1,0 +1,241 @@
+﻿<html>
+	<head>
+		<title>jp_pEng</title>
+		<link rel="stylesheet" type="text/css" href="../data/css/dark_wBG.css">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript" src="../data/js/lang_data.js"></script>
+	</head>
+	
+	
+	<script type = "text/javascript">
+		function getUrlVars() {
+			var vars = {};
+			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+				vars[key] = value;
+			});
+			return vars;
+		}
+	</script>
+
+	<!-- Gather Statistics on who visits this site -->
+	<div id = "statistics">
+		<img src="http://www.easycounter.com/counter.php?jppeng" border="0" alt="Web Site Hit Counter">
+	</div>
+	
+	<style type = "text/css">
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		
+		.underlined_td {
+			border-bottom: 1px solid black;
+		}
+	</style>
+	
+	<script type = "text/javascript">
+		//Create a new array.
+		var tango = new Array();
+		
+		function add_tango(kanji, kana, romaji, meaning, hint, type) {
+			tango[tango.length] = [kanji, kana, romaji, meaning, hint, type];
+			
+			//Update previous entries.
+			update_list();
+			update_code();
+		}
+		
+		function generate_file() {
+			dstr = "";
+			
+			dstr += "﻿//------------------------------------------//\n";
+			dstr += "//         jp_pEng Generated Module         //\n";
+			dstr += "//------------------------------------------//\n";
+			dstr += "\n";
+			dstr += "//This is for mass importing into a group review.\n";
+			dstr += "if (typeof mass_import !== 'undefined')\n";
+			dstr += "	sectionmark[section_cnt++] = count;\n";
+			dstr += "\n";
+			dstr += "//Load vocabulary into memory\n";
+			
+			for (var i = 0; i < tango.length; i++)
+				//jp_pEng takes these in a different order. 021345
+				dstr += "addTerm(\"" + tango[i][0] + "\", \"" + tango[i][2] + "\", \"" + tango[i][1] + "\", \"" + tango[i][3] + "\", \"" + tango[i][4] + "\", \"" + tango[i][5] + "\");\n";
+			
+			return dstr;
+		}
+		
+		function autoAdd() {
+			add_tango(
+				document.getElementById('kanji').value,
+				document.getElementById('kana').value,
+				document.getElementById('romaji').value,
+				document.getElementById('meaning').value,
+				document.getElementById('hint').value,
+				document.getElementById('type').value
+			);
+		}
+		
+		function update_list() {
+			dstr = "<center><table width = 640px class = 'glass'><tr><td width = 40px><b>Kanji</b></td><td><b>Kana</b></td><td><b>Romaji</b></td><td><b>Meaning</b></td><td><b>Hint</b></td><td><b>Type</b></td></tr>";
+			for (var i = 0; i < tango.length; i++) {
+				dstr += "<tr>";
+				for (var a = 0; a < tango[i].length; a++)
+					dstr += "<td height = 39px>" + tango[i][a] + "</td>";
+				dstr += "</tr>";
+				/*dstr += "<tr>";
+				//jp_pEng takes these in a different order. 021345
+				for (var a = 0; a < tango[i].length; a++)
+					dstr += "<td>" + tango[i][a] + "</td>";
+				
+				dstr += "</tr>";*/
+				
+				//dstr += "<tr><td height = 39px><center><font size='6'>" + tango[i][0] + "</font></center></td><td><center>" + tango[i][1] + "</center></td><td><center>" + tango[i][3].replace(/;/g, ", ") + "</center></td></tr>";
+			}
+			
+			dstr += "</table>";
+			
+			document.getElementById('gen_table').innerHTML = dstr;
+		}
+		
+		function update_code() {
+			document.getElementById('genCode').innerHTML = generate_file();
+		}
+		
+		function show_code() {
+			document.getElementById("codebox_bg").style.left = "0px";
+			document.getElementById("codebox").style.left = "0px";
+		}
+		
+		function hide_code() {
+			document.getElementById("codebox_bg").style.left = "150%";
+			document.getElementById("codebox").style.left = "150%";
+		}
+	</script>
+	
+	<body>
+		<div id = "div_sb">
+			<table class = "none" width = "100%" style = "padding-top: 10px; padding-left: 4px;">
+				<tr>
+					<td>Kanji:</td>
+					<td><input type = "text" class = "dev_text" style = "text-shadow: 0px 0px 0 black;" id = "kanji"/></br></td>
+				</tr>
+				<tr>
+					<td>Kana:</td>
+					<td><input type = "text" class = "dev_text" id = "kana"/></br></td>
+				</tr>
+				<tr>
+					<td>Romaji:</td>
+					<td><input type = "text" class = "dev_text" id = "romaji"/></br></td>
+				</tr>
+				<tr>
+					<td>Meaning:</td>
+					<td><input type = "text" class = "dev_text" id = "meaning"/></br></td>
+				</tr>
+				<tr>
+					<td>Hint:</td>
+					<td><input type = "text" class = "dev_text" id = "hint"/></br></td>
+				</tr>
+				<tr>
+					<td>Type:</td>
+					<td>
+						<!-- Type: <input type = "text" id = "kanji"/></br> -->
+			
+						<select id = "type" class = "dev_option">
+							<option value="">n/a</option>
+							<option value="名詞">Noun</option>
+							<option value="形容動詞">Na-Adj</option>
+							<option value="形容詞">I-Adj</option>
+							<option value="いい-アジェクティブ">II-Adj</option>
+							<option value="う動詞">U-Verb</option>
+							<option value="る動詞">Ru-Verb</option>
+							<option value="くる-例外動詞">Kuru-Verb</option>
+							<option value="する-例外動詞">Suru-Verb</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" class = "vx_button" id="btnAdd" value="Add to list" onclick="autoAdd();"/>
+					</td>
+					<td>
+						<input type="button" class = "vx_button" id="btnGen" value="Generate Javascript" onclick="show_code(); document.getElementById('gen_text').value = generate_file();"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<!--Top of the page goes last... ironic.-->
+		<div id = "top_blurbar">
+			<table class="top_bar">
+				<tr>
+					<td valign = "middle" width = "70px">
+						<a href="../mod/index.html" ><img class="back_button" src="../data/images/transparent_arrow_placement.png"/></a>
+					</td>
+					<td width = "4px">
+					</td>
+					<td valign = "bottom">
+						<font size = "7px">
+							<span style="vertical-align:bottom;">
+									Module Creator
+							</span>
+						</font>
+					</td>
+				</tr>
+				<tr height = "32px">
+					<td valign = "middle" width = "64px">
+						
+					</td>
+					<td width = "4px">
+					</td>
+					<td valign = "bottom">
+						Create Vocabulary Modules for usage in jp_pEng.
+					</td>
+				</tr>
+			</table>
+			<img src = "../data/images/laser_shadow.png" width = "100%" height = "14px"/>
+			
+			<div id = "gen_table" style = "position: fixed; top: 133px; bottom: 23px; left: 320px; width: calc(100% - 320px); background: rgba(0, 0, 0, 0); box-shadow: 0 0 10px black; overflow-y: auto; overflow-x: hidden; padding-top: 32px; padding-bottom: 32px;">
+				
+					
+					</table>
+					<br/><br/>
+
+					<script language="JavaScript">
+					document.write("<a href = 'practice.html?lesson=" + lesson + "'>Practice</a> - <a href = 'worksheet.html?lesson=" + lesson + "'>Worksheet</a>");
+					</script>
+
+				</center>
+			</div>
+		<div/>
+		
+		<!--Bottom of the page also. Can't forget about that!-->
+		<img src = "../data/images/laser_shadow_d.png" width = "100%" height = "14px" style="position:fixed; left: 0; bottom: 23px;"/>
+		<div id = "bottom_copyright">
+			<script type = "text/javascript">document.write(text_data["en"]["copyright"]);</script>
+		</div>
+		
+		<!-- WAIT! Actually there is one more thing that needs to appear... A message box for generated code if we made any. -->
+		<div id = "codebox_bg">
+			<div id = "codebox">
+				</br>
+				<center>
+					<font size = "7px">
+						Generated Javascript Code
+					</font>
+					</br>
+					This is javascript code to put in a *.js file. When done, if you have administrative access, simply add the module and link it via "modules.js".</br></br>
+					<textarea class = "dev_textarea" id = "gen_text" style = "height: calc(100% - 168px); width: calc(100% - 240px)"></textarea>
+					</br>
+					<input type = "button" class = "vx_button" value = "Go back to Editing" onclick = "hide_code();"/>
+				</center>
+			</div>
+		</div>
+		
+		<script type = "text/javascript">
+			//Initially hide the code box.
+			hide_code();
+		</script>
+	</body>
+</html>
