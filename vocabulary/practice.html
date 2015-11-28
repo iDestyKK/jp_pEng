@@ -12,7 +12,7 @@ function getUrlVars() {
 }
 
 function generateSpeech(str) {
-	document.getElementById("audio_hidden").innerHTML = "<audio controls=\"controls\" height=\"100\" width=\"100\" autoplay=\"true\"><source src=\"http://translate.google.com/translate_tts?ie=UTF-8&tl=JA-jp&q=%20" + str + "\" type=\"audio/mp3\"></audio>";
+	document.getElementById("audio_hidden").innerHTML = "<audio controls=\"controls\" rel=\"noreferrer\" height=\"100\" width=\"100\" autoplay=\"true\"><source src=\"http://translate.google.com/translate_tts?ie=UTF-8&tl=JA-jp&q=%20" + str + "\" type=\"audio/mp3\"></audio>";
 }
 </script>
 

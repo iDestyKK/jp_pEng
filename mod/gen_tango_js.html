@@ -1,0 +1,55 @@
+﻿<script src="..\data\js\main_functions.js" type="text/javascript"></script>
+<script src="../vocabulary/js/main.js" type="text/javascript"></script>
+<pre><div id = "content"></div></pre>
+<script language="JavaScript">
+	var intable = false;
+	//Is Category
+	var mass_import = true;
+	
+	var section_cnt = 0;
+	sectionmark = new Array();
+	
+	var lesson_cnt = 0;
+	lessonmark = new Array();
+	
+	count = 0;
+	
+	vocabulary         = new Array();
+	vocabulary_romaji  = new Array();
+	vocabulary_kana    = new Array();
+	vocabulary_meaning = new Array();
+	vocabulary_hint    = new Array();
+	vocabulary_lesson  = new Array();
+	vocabulary_type    = new Array();
+	
+	str_thing = "";
+	skip_var = 0;
+	
+	function add_to_str_thing(title, description) {
+		str_thing += "			{</br>";
+		str_thing += "				name: \"" + title + "\",</br>";
+		str_thing += "				description: \"" + title + "\",</br>";
+		str_thing += "				tango: [</br>";
+		for (var i = skip_var; i < vocabulary.length; i++) {
+			str_thing += "					[\"" + vocabulary[i] + "\", \"" + vocabulary_kana[i] + "\", \"" + vocabulary_romaji[i] + "\", \"" + vocabulary_meaning[i] + "\", \"" + vocabulary_hint[i] + "\", \"" + vocabulary_type[i] + "\"],</br>"
+		}
+		str_thing += "				]</br>";
+		str_thing += "			},</br>";
+		document.getElementById("content").innerHTML = str_thing;
+		
+		skip_var = vocabulary.length;
+	}
+	
+	for (var i = 0; i < v_module_id.length; i += 1)
+	{
+		switch (v_module_id[i]) {
+			case 0:
+				break;
+			case 1:	
+				//Section
+				document.write('<scr'+'ipt src="../vocabulary/' + v_module_path[i] + '" type="text/javascript" ></scr'+'ipt>');
+				document.write('<scr'+'ipt type="text/javascript" >add_to_str_thing(\"' + v_modules[i] + '\", \"' + v_module_description[i] + '\");</scr'+'ipt>');
+				break;
+		}
+	}
+</script>

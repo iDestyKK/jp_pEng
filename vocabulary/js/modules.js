@@ -96,5 +96,40 @@ AddVModuleCat("る-Verbs","Words for actions","js/modules/lesson12/lesson12_5_ru
 AddVModuleCat("Irregular Verbs","Words for actions","js/modules/lesson12/lesson12_6_iverb.js");
 AddVModuleCat("Adverbs and Other Expressions","Words for descriptions/conversations","js/modules/lesson12/lesson12_7_adverbsandotherexpressions.js");
 
+AddCategory("Lesson 13");
+AddVModuleCat("Nouns","Words for objects, things, and places","js/modules/lesson13/lesson13_1_nouns.js");
+AddVModuleCat("い-Adjectives","Words for describing objects or verbs","js/modules/lesson13/lesson13_2_iadj.js");
+AddVModuleCat("な-Adjectives","Words for describing objects or verbs","js/modules/lesson13/lesson13_3_naadj.js");
+AddVModuleCat("う-Verbs","Words for actions","js/modules/lesson13/lesson13_4_uverb.js");
+AddVModuleCat("Irregular Verbs","Words for actions","js/modules/lesson13/lesson13_5_iverb.js");
+AddVModuleCat("Adverbs and Other Expressions","Words for descriptions/conversations","js/modules/lesson13/lesson13_6_adverbsandotherexpressions.js");
+
+
+AddCategory("Lesson 14");
+AddVModuleCat("Nouns","Words for objects, things, and places","js/modules/lesson14/lesson14_1_nouns.js");
+AddVModuleCat("い-Adjectives","Words for describing objects or verbs","js/modules/lesson14/lesson14_2_iadj.js");
+AddVModuleCat("な-Adjectives","Words for describing objects or verbs","js/modules/lesson14/lesson14_3_naadj.js");
+AddVModuleCat("う-Verbs","Words for actions","js/modules/lesson14/lesson14_4_uverb.js");
+AddVModuleCat("る-Verbs","Words for actions","js/modules/lesson14/lesson14_5_ruverb.js");
+AddVModuleCat("Irregular Verbs","Words for actions","js/modules/lesson14/lesson14_6_iverb.js");
+AddVModuleCat("Adverbs and Other Expressions","Words for descriptions/conversations","js/modules/lesson14/lesson14_7_adverbsandotherexpressions.js");
+AddVModuleCat("Counters","Counters for specific items/nouns","js/modules/lesson14/lesson14_8_counters.js");
+
+AddCategory("Lesson 15");
+AddVModuleCat("Nouns","Words for objects, things, and places","js/modules/lesson15/lesson15_1_nouns.js");
+AddVModuleCat("い-Adjectives","Words for describing objects or verbs","js/modules/lesson15/lesson15_2_iadj.js");
+AddVModuleCat("う-Verbs","Words for actions","js/modules/lesson15/lesson15_3_uverb.js");
+AddVModuleCat("る-Verbs","Words for actions","js/modules/lesson15/lesson15_4_ruverb.js");
+AddVModuleCat("Irregular Verbs","Words for actions","js/modules/lesson15/lesson15_5_iverb.js");
+AddVModuleCat("Adverbs and Other Expressions","Words for descriptions/conversations","js/modules/lesson15/lesson15_6_adverbsandotherexpressions.js");
+
+AddCategory("Lesson 16");
+AddVModuleCat("Nouns","Words for objects, things, and places","js/modules/lesson16/lesson16_1_nouns.js");
+AddVModuleCat("い-Adjectives","Words for describing objects or verbs","js/modules/lesson16/lesson16_2_iadj.js");
+AddVModuleCat("う-Verbs","Words for actions","js/modules/lesson16/lesson16_3_uverb.js");
+AddVModuleCat("る-Verbs","Words for actions","js/modules/lesson16/lesson16_4_ruverb.js");
+AddVModuleCat("Irregular Verbs","Words for actions","js/modules/lesson16/lesson16_5_iverb.js");
+AddVModuleCat("Adverbs and Other Expressions","Words for descriptions/conversations","js/modules/lesson16/lesson16_6_adverbsandotherexpressions.js");
+
 //AddCategory("Personal Lessons");
 //AddVModuleCat("Coldness", "Words for scenarios such as in the cold.","js/modules/personal/coldness.js");
